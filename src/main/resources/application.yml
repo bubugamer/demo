@@ -1,0 +1,44 @@
+# 应用服务 WEB 访问端口
+server:
+  port: 8080  # 设置应用服务的访问端口为8080
+
+# MyBatis配置
+mybatis:
+  mapper-locations: classpath:mappers/*xml  # 指定MyBatis的Mapper XML文件的位置
+  type-aliases-package: com.example.demo.mybatis.entity  # 指定MyBatis的别名包路径
+
+# THYMELEAF (ThymeleafAutoConfiguration)
+spring:
+  datasource:
+    primary: master
+    strict: false
+
+    master:
+      url: jdbc:mysql://127.0.0.1:3306/demo?allowPublicKeyRetrieval=true&useUnicode=true  # 数据库连接URL，连接本地MySQL数据库demo
+      username: root  # 数据库用户名
+      password: root  # 数据库密码
+      driver-class-name: com.mysql.cj.jdbc.Driver  # 数据库驱动类名
+      type: com.alibaba.druid.pool.DruidDataSource  # 使用Druid数据源
+      druid:
+        max-active: 20  # 设置Druid数据源的最大活动连接数
+
+    slave:
+      url: jdbc:mysql://127.0.0.1:4417/demo?allowPublicKeyRetrieval=true&useUnicode=true  # 数据库连接URL，连接本地MySQL数据库demo
+      username: root  # 数据库用户名
+      password: root  # 数据库密码
+      driver-class-name: com.mysql.cj.jdbc.Driver  # 数据库驱动类名
+      type: com.alibaba.druid.pool.DruidDataSource  # 使用Druid数据源
+      druid:
+        max-active: 20  # 设置Druid数据源的最大活动连接数
+
+  thymeleaf:
+    cache: true  # 启用Thymeleaf的模板缓存
+    check-template: true  # 启用模板检查
+    check-template-location: true  # 启用模板位置检查
+    content-type: text/html  # 设置内容类型为text/html
+    enabled: true  # 启用Thymeleaf
+    encoding: UTF-8  # 设置编码格式为UTF-8
+    excluded-view-names: ""  # 排除的视图名称（留空表示不排除）
+    mode: HTML5  # 设置模板模式为HTML5
+    prefix: classpath:/templates/  # 设置模板前缀路径
+    suffix: .html  # 设置模板后缀名
